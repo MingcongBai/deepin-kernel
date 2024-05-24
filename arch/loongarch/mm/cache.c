@@ -48,6 +48,7 @@ static void flush_cache_leaf(unsigned int leaf)
 	struct cache_desc *cdesc = current_cpu_data.cache_leaves + leaf;
 
 	nr_nodes = cache_private(cdesc) ? 1 : loongson_sysconf.nr_nodes;
+	iocsr_write32(0x1, 0x280);
 
 	do {
 		for (i = 0; i < cdesc->sets; i++) {
